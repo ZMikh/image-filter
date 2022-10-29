@@ -1,4 +1,4 @@
-package ru.mikhailova.imageCrop.mediator;
+package ru.mikhailova.imageCrop.util;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,7 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class Mediator {
+public class ImageConvertUtil {
     public static BufferedImage getBufferedImageFromFile(MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();
         BufferedInputStream input = new BufferedInputStream(inputStream);

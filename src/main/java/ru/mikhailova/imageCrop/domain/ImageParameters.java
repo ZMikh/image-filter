@@ -8,7 +8,7 @@ import lombok.Data;
 public class ImageParameters {
     private Boolean grayscale;
     private Integer offsetLeft;
-    private Integer offsetBottom;
-    private Integer offsetRight;
     private Integer offsetAbove;
+    private Integer offsetRight;
+    private Integer offsetBottom;
 }
