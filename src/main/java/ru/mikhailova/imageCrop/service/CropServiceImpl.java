@@ -1,51 +1,23 @@
 package ru.mikhailova.imageCrop.service;
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.mikhailova.imageCrop.domain.ImageParameters;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 
 @Service
 public class CropServiceImpl implements CropService {
-
     @Override
-    public String upload(MultipartFile file, Boolean grayscale, Integer offsetLeft, Integer offsetBottom,
-                         Integer offsetRight, Integer offsetAbove, RedirectAttributes attributes) throws IOException {
-        if (file.isEmpty()) {
-            attributes.addFlashAttribute("msg", "select image");
-            return "redirect:/";
-        }
-        String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
-        BufferedImage bufferedImageFromFile = getBufferedImageFromFile(file);
-        if (Objects.isNull(bufferedImageFromFile)) {
-            attributes.addFlashAttribute("msg", "Some problem with this photo");
-            return "redirect:/";
-        }
-
-        BufferedImage bufferedImage = grayscaleImage(bufferedImageFromFile, grayscale);
-
-        attributes.addFlashAttribute("msg", "image is uploaded " + fileName);
-
-        BufferedImage bufferedImage1 = cropImage(bufferedImage, offsetLeft, offsetBottom, offsetRight, offsetAbove);
-        attributes.addFlashAttribute("croppedfile", Base64.encodeBase64String(toByteArray(bufferedImage1)));
-
-        attributes.addFlashAttribute("checkbox");
-        return "redirect:/";
+    public BufferedImage upload(BufferedImage bufferedImageFromFile, ImageParameters parameters) throws IOException {
+        BufferedImage bufferedImage = grayscaleImage(bufferedImageFromFile, parameters.getGrayscale());
+        return cropImage(bufferedImage, parameters);
     }
 
     @Override
     public BufferedImage grayscaleImage(BufferedImage image, Boolean grayscale) {
-        if(Boolean.TRUE.equals(grayscale)) {
+        if (Boolean.TRUE.equals(grayscale)) {
             int width = image.getWidth();
             int length = image.getHeight();
 
@@ -64,29 +36,16 @@ public class CropServiceImpl implements CropService {
     }
 
     @Override
-    public BufferedImage cropImage(BufferedImage image, Integer offsetLeft, Integer offsetBottom, Integer offsetRight, Integer offsetAbove) {
+    public BufferedImage cropImage(BufferedImage image, ImageParameters parameters) {
         int originalImageWidth = image.getWidth();
         int originalImageLength = image.getHeight();
 
-        int w = offsetRight *  originalImageWidth / 100;
-        int h = offsetAbove * originalImageLength / 100;
-        int x = offsetLeft * originalImageWidth / 100;
-        int y = offsetBottom * originalImageLength / 100;
+        int x = parameters.getOffsetLeft() * originalImageWidth / 100;
+        int y = parameters.getOffsetBottom() * originalImageLength / 100;
+        int w = (100 - parameters.getOffsetRight() - parameters.getOffsetLeft()) * originalImageWidth / 100;
+        int h = (100 - parameters.getOffsetAbove() - parameters.getOffsetBottom()) * originalImageLength / 100;
+
 
         return image.getSubimage(x, y, w, h);
-    }
-
-    @Override
-    public BufferedImage getBufferedImageFromFile(MultipartFile file) throws IOException {
-        InputStream inputStream = file.getInputStream();
-        BufferedInputStream input = new BufferedInputStream(inputStream);
-        return ImageIO.read(input);
-    }
-
-    @Override
-    public byte[] toByteArray(BufferedImage image) throws IOException {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ImageIO.write(image, "jpg", byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();
     }
 }

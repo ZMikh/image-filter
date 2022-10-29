@@ -1,12 +1,43 @@
+body {
+    background-color: #292929;
+    font-family: sans-serif;
+}
+
 h2 {
-color: green;
+   color: #094c90;
+    font-family: sans-serif;
 }
 
 h3 {
-color: blue;
+    color: #7FC7FF;
+
+    font-family: sans-serif;
 }
 
-button {
-    background-color: #ADD8E6;
-    margin: 5px;
+.form-group file {
+    color: #d0d0d0;
 }
+
+.submit input  {
+    background-color: #1164B4;
+}
+
+.params {
+    width: 400px;
+    height: 180px;
+}
+
+.params input {
+    background-color: #f9f9f8;
+    margin: 5px;
+    color: #2c2c2d;
+}
+
+.params label {
+    color: #d0d0d0;
+}
+
+.params legend {
+    color: #d0d0d0;
+}
+

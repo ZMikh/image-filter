@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="ISO-8859-1" />
-        <link href = "css/styles.css" rel = "stylesheet" />
-        <title>Crop image</title>
-    </head>
-    <body>
-        <h2>Thymeleaf for ImageCrop App</h2>
-        <section>
+<head>
+    <meta charset="ISO-8859-1"/>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <title>Crop image</title>
+</head>
+<body>
+<div class="body">
+    <h2>ImageCrop App</h2>
+    <p th:text="${msg}"></p>
+    <img th:if="${croppedfile}" th:src="@{'data:image/jpeg;base64,' + ${croppedfile}}"/>
+    <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="file" accept="image/jpeg" name="file" class="form-control-file">
+        </div>
+        <div class="submit">
+            <input type="submit" name="submit" value="Upload"/>
+        </div>
+        <fieldset class="params">
+            <legend>Set cropped size parameters</legend>
             <div>
-                <h3>Upload an image</h3>
-                <p th:text="${msg}"></p>
-                <img  th:src="@{'data:image/jpeg;base64,' + ${croppedfile}}" />
-                <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <input type="file" accept="image/jpeg" name="file" class="form-control-file">
-                    </div>
-                    <div>
-                        <input type="submit" name="submit" value="Upload" />
-                    </div>
-                    <fieldset>
-                        <legend>Set cropped size parameters</legend>
-                        <div>
-                            <input type="checkbox" id="grayscale" name="grayscale" checked>
-                            <label for="grayscale">Grayscale</label>
-                        </div>
-                        <div>
-                            <input type="number" id="offset_left" name="offset_left" min="0" max="100" value="10">
-                            <label for="offset_left">Indent left (0-100%)</label>
-                        </div>
-                        <div>
-                            <input type="number" id="offset_bottom" name="offset_bottom" min="0" max="100" value="10">
-                            <label for="offset_bottom">Bottom indent (0-100%)</label>
-                        </div>
-                        <div>
-                            <input type="number" id="offset_right" name="offset_right" max="100" min="0" value="90">
-                            <label for="offset_right">Indent right (0-100%)</label>
-                        </div>
-                        <div>
-                            <input type="number" id="offset_above" name="offset_above" max="100" min="0" value="90">
-                            <label for="offset_above">Indent from above (0-100%)</label>
-                        </div>
-                    </fieldset>
-                </form>
+                <input type="checkbox" id="grayscale" name="grayscale" checked>
+                <label for="grayscale">Grayscale</label>
             </div>
-        </section>
-    </body>
+            <div>
+                <input type="number" id="offset_left" name="offset_left" min="0" max="100" value="10">
+                <label for="offset_left">Indent left (0-100%)</label>
+            </div>
+            <div>
+                <input type="number" id="offset_bottom" name="offset_bottom" min="0" max="100" value="10">
+                <label for="offset_bottom">Bottom indent (0-100%)</label>
+            </div>
+            <div>
+                <input type="number" id="offset_right" name="offset_right" max="100" min="0" value="90">
+                <label for="offset_right">Indent right (0-100%)</label>
+            </div>
+            <div>
+                <input type="number" id="offset_above" name="offset_above" max="100" min="0" value="90">
+                <label for="offset_above">Indent from above (0-100%)</label>
+            </div>
+        </fieldset>
+    </form>
+</div>
+</body>
 </html>
