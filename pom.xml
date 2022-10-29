@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.mikhailova</groupId>
-	<artifactId>imageCrop</artifactId>
+	<artifactId>image-filter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>imageCrop</name>
-	<description>image crop service</description>
+	<name>image-filter</name>
+	<description>image filter service</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

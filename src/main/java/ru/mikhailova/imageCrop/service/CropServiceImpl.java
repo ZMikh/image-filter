@@ -15,7 +15,9 @@ public class CropServiceImpl implements CropService {
 
     @Override
     public BufferedImage upload(BufferedImage image, ImageParameters parameters) {
-        filters.forEach(imageFilter -> imageFilter.filter(image, parameters));
+        for (ImageFilter filter : filters) {
+            image = filter.filter(image, parameters);
+        }
         return image;
     }
 }
