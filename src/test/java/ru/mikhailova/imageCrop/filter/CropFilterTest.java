@@ -26,10 +26,10 @@ public class CropFilterTest {
         URL resource = getClass().getResource("/images/testImage.jpg");
         bufferedImage = ImageIO.read(Objects.requireNonNull(resource));
         imageParameters = ImageParameters.builder()
-                .offsetRight(20)
-                .offsetBottom(20)
-                .offsetLeft(30)
-                .offsetAbove(40)
+                .cutRight(20)
+                .cutBottom(20)
+                .cutLeft(30)
+                .cutAbove(40)
                 .build();
     }
 

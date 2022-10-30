@@ -25,10 +25,10 @@ public class CropController {
     @PostMapping("/upload")
     public String uploadImage(@RequestParam("file") MultipartFile file,
                               @RequestParam(value = "grayscale", required = false) Boolean grayscale,
-                              @RequestParam(value = "offset_left", required = false) Integer offsetLeft,
-                              @RequestParam(value = "offset_above", required = false) Integer offsetAbove,
-                              @RequestParam(value = "offset_right", required = false) Integer offsetRight,
-                              @RequestParam(value = "offset_bottom", required = false) Integer offsetBottom,
+                              @RequestParam(value = "cut_left", required = false) Integer cutLeft,
+                              @RequestParam(value = "cut_above", required = false) Integer cutAbove,
+                              @RequestParam(value = "cut_right", required = false) Integer cutRight,
+                              @RequestParam(value = "cut_bottom", required = false) Integer cutBottom,
                               RedirectAttributes attributes) throws IOException {
         if (file.isEmpty()) {
             attributes.addFlashAttribute("msg", "select image");
@@ -41,10 +41,10 @@ public class CropController {
         }
         ImageParameters imageParameters = ImageParameters.builder()
                 .grayscale(grayscale)
-                .offsetBottom(offsetBottom)
-                .offsetAbove(offsetAbove)
-                .offsetRight(offsetRight)
-                .offsetLeft(offsetLeft)
+                .cutBottom(cutBottom)
+                .cutAbove(cutAbove)
+                .cutRight(cutRight)
+                .cutLeft(cutLeft)
                 .build();
 
         BufferedImage upload = cropService.upload(bufferedImageFromFile, imageParameters);

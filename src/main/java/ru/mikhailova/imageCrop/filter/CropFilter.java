@@ -13,10 +13,10 @@ public class CropFilter implements ImageFilter {
         int originalImageWidth = image.getWidth();
         int originalImageLength = image.getHeight();
 
-        int x = parameters.getOffsetLeft() * originalImageWidth / 100;
-        int y = parameters.getOffsetAbove() * originalImageLength / 100;
-        int w = (100 - parameters.getOffsetRight() - parameters.getOffsetLeft()) * originalImageWidth / 100;
-        int h = (100 - parameters.getOffsetBottom() - parameters.getOffsetAbove()) * originalImageLength / 100;
+        int x = parameters.getCutLeft() * originalImageWidth / 100;
+        int y = parameters.getCutAbove() * originalImageLength / 100;
+        int w = (100 - parameters.getCutRight() - parameters.getCutLeft()) * originalImageWidth / 100;
+        int h = (100 - parameters.getCutBottom() - parameters.getCutAbove()) * originalImageLength / 100;
 
 
         return image.getSubimage(x, y, w, h);
