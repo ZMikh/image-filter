@@ -1,10 +1,28 @@
 body {
     background-color: #292929;
-    font-family: sans-serif;
+    color: #86898f;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin-left: 700px;
+    margin-right: 700px;
+    margin-top: 100px;
+    margin-bottom: 400px;
+    border: 5px solid grey;
+    padding: 20px;
+}
+
+.info {
+    font-style: normal;
+}
+
+.image {
+    max-width: 200 px;
+    max-height: 200 px;
 }
 
 h2 {
-   color: #094c90;
+    color: #094c90;
     font-family: sans-serif;
 }
 
@@ -18,13 +36,28 @@ h3 {
     color: #d0d0d0;
 }
 
-.submit input  {
+.alert input {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+button {
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.btn input  {
     background-color: #1164B4;
+    margin-top: 200px;
 }
 
 .params {
     width: 400px;
     height: 180px;
+
 }
 
 .params input {
