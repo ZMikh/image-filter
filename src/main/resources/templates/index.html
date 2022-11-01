@@ -2,53 +2,96 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="ISO-8859-1"/>
-    <link href="styles.css" rel="stylesheet"/>
+    <link href="css\styles.css" rel="stylesheet"/>
     <title>Crop image</title>
 </head>
 <body>
-    <div class="info">
-        <h2>ImageCrop App</h2>
-        <p th:text="${msg}"></p>
-        <img th:if="${croppedfile}" th:src="@{'data:image/jpeg;base64,' + ${croppedfile}}"
-        class="image"/>
-        <div>
-            <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
-                <div class="alert alert-primary" role="alert">
-                    <input type="file" accept="image/jpeg" name="file" class="form-control-file">
-                </div>
-                <button class="btn btn-primary" type="submit" name="submit">Upload</button>
-                <label>Set cropped size parameters</label>
-                
-                <div class="input-group">
-                    <span class="input-group-text" id="basic-addon1">Grayscale</span>
-                    <input type="checkbox" id="grayscale" name="grayscale" checked>
-                </div>
-                
-                <div class="input-group">
-                    <span class="input-group-text" id="basic-addon2">Cut from left side (%)</span>
-                    <input type="text" class="form-control" name="cut_left" placeholder="0-100" aria-label="0-100"
-                       aria-describedby="basic-addon2">
-                </div>
-                
-                <div class="input-group">
-                    <span class="input-group-text" id="basic-addon3">Cut from bottom (%)</span>
-                    <input type="text" class="form-control" name="cut_bottom" placeholder="0-100" aria-label="0-100"
-                       aria-describedby="basic-addon3">
-                </div>
-                
-                <div class="input-group">
-                    <span class="input-group-text" id="basic-addon4">Cut from right side (%)</span>
-                    <input type="text" class="form-control" name="cut_right" placeholder="0-100" aria-label="0-100"
-                       aria-describedby="basic-addon4">
-                </div>
-                
-                <div class="input-group">
-                    <span class="input-group-text" id="basic-addon5">Cut from above (%)</span>
-                    <input type="text" class="form-control" name="cut_above" placeholder="0-100" aria-label="0-100"
-                       aria-describedby="basic-addon5">
-                </div>
-            </form>
-        </div>
+<div class="info">
+    <h2>Image Filter App</h2>
+    <p class="message" th:text="${msg}"></p>
+    <img th:if="${croppedfile}" th:src="@{'data:image/jpeg;base64,' + ${croppedfile}}"
+         class="image"/>
+    <div>
+        <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+            <div class="alert" role="alert">
+                <input type="file" accept="image/jpeg" name="file" class="form-control-file">
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <div class="input-group-checkbox">
+                            <span class="input-group-text" id="basic-addon1">Grayscale</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-checkbox">
+                            <input type="checkbox" id="grayscale" name="grayscale" checked>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon2">Cut from left side (%)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" min="0" step="1" class="form-control" name="cut_left" placeholder="0-100"
+                                   aria-label="0-100"
+                                   aria-describedby="basic-addon2" value="0">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3">Cut from bottom (%)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" min="0" step="1" class="form-control" name="cut_bottom" placeholder="0-100"
+                                   aria-label="0-100"
+                                   aria-describedby="basic-addon3" value="0">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon4">Cut from right side (%)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" min="0" step="1" class="form-control" name="cut_right" placeholder="0-100"
+                                   aria-label="0-100"
+                                   aria-describedby="basic-addon4" value="0">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon5">Cut from above (%)</span>
+                        </div>
+                    </td>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" min="0" step="1" class="form-control" name="cut_above" placeholder="0-100"
+                                   aria-label="0-100"
+                                   aria-describedby="basic-addon5" value="0">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <button class="btn" type="submit" name="submit">Upload</button>
+            </div>
+        </form>
     </div>
+</div>
 </body>
 </html>

@@ -1,24 +1,28 @@
 body {
     background-color: #292929;
-    color: #86898f;
+    color: #303f9f;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: normal;
-    margin-left: 700px;
-    margin-right: 700px;
-    margin-top: 100px;
-    margin-bottom: 400px;
-    border: 5px solid grey;
-    padding: 20px;
+    margin: 0px;
+    text-align: center;
+    padding: 0px;
 }
 
 .info {
+    display: inline-block;
+    vertical-align: middle;
     font-style: normal;
+    background-color: #ffa000;
+    margin: auto;
+    margin-top: 50px;
+    border: 5px solid grey;
+    padding: 10px;
 }
 
 .image {
-    max-width: 200 px;
-    max-height: 200 px;
+    max-width: 70%;
+    max-height: 70%;
 }
 
 h2 {
@@ -26,11 +30,6 @@ h2 {
     font-family: sans-serif;
 }
 
-h3 {
-    color: #7FC7FF;
-
-    font-family: sans-serif;
-}
 
 .form-group file {
     color: #d0d0d0;
@@ -42,35 +41,29 @@ h3 {
     font-weight: normal;
 }
 
-button {
-    margin-top: 20px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: normal;
-}
 
-.btn input  {
-    background-color: #1164B4;
-    margin-top: 200px;
-}
-
-.params {
-    width: 400px;
-    height: 180px;
-
-}
-
-.params input {
-    background-color: #f9f9f8;
+.btn {
+    border: none;
+    background: #333;
+    padding: 10px 15px;
+    color: #fff;
     margin: 5px;
-    color: #2c2c2d;
+    cursor: pointer;
 }
 
-.params label {
-    color: #d0d0d0;
+.btn:hover {
+    opacity: 0.9;
 }
 
-.params legend {
-    color: #d0d0d0;
+.message {
+    color: red;
+}
+
+td {
+    text-align: left;
+}
+
+tr > td {
+    padding-bottom: 5px;
 }
 

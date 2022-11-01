@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.mikhailova.imageCrop.domain.ImageParameters;
 import ru.mikhailova.imageCrop.service.CropService;
+import ru.mikhailova.imageCrop.service.FilterException;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -39,6 +40,7 @@ public class CropController {
             attributes.addFlashAttribute("msg", "Some problem with this photo");
             return "redirect:/";
         }
+
         ImageParameters imageParameters = ImageParameters.builder()
                 .grayscale(grayscale)
                 .cutBottom(cutBottom)
@@ -47,11 +49,13 @@ public class CropController {
                 .cutLeft(cutLeft)
                 .build();
 
-        BufferedImage upload = cropService.upload(bufferedImageFromFile, imageParameters);
-
-        attributes.addFlashAttribute("msg", "image is uploaded");
-        attributes.addFlashAttribute("croppedfile", Base64.encodeBase64String(toByteArray(upload)));
-        attributes.addFlashAttribute("checkbox");
+        try {
+            BufferedImage upload = cropService.upload(bufferedImageFromFile, imageParameters);
+            attributes.addFlashAttribute("croppedfile", Base64.encodeBase64String(toByteArray(upload)));
+        } catch (FilterException e) {
+            attributes.addFlashAttribute("msg", e.getMessage());
+            return "redirect:/";
+        }
         return "redirect:/";
     }
 }
